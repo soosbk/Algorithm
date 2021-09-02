@@ -1,6 +1,5 @@
 #include<iostream>
 #include<stack>
-#include<vector>
 using namespace std;
 struct cor{
 	int x;
@@ -22,7 +21,6 @@ int main(){
 	stack<cor> s;
 	cor tmp,tmp2; 
 	int count;
-	vector<int>v;
 	while(true){
 
 		cin>>w>>h;
