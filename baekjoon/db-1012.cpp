@@ -5,12 +5,6 @@ using namespace std;
 struct cor{
 	int x;
 	int y;
-
-	void init(int x, int y)
-    {
-    	this->x = x;
-        this->y = y;
-    }
 };
 
 int land[1000][1000];
@@ -21,7 +15,6 @@ int main(){
 	int x,y;
 	int case_num;
 	stack<cor> s;
-
 	cor tmp,tmp2; 
 	int count;
 	
@@ -34,8 +27,6 @@ int main(){
 			cin>>x>>y;
 			land[x][y]=1;
 		}
-
-
 		for(int i=0;i<m;i++){
 			for(int j=0;j<n;j++) {
 				if(land[i][j]==0) continue;
@@ -55,27 +46,10 @@ int main(){
 						if(dx<0||dy<0||dx>=m||dy>=n||land[dx][dy]==0) continue;
 						tmp2.x=dx; tmp2.y=dy;
 						s.push(tmp2);
-						
-						
 					}
-
-					
 				}
-
 			}
 		}
-			
-
 		cout<<count<<endl;
-
-
 	}
-	
-
-
-
-
-	
-
-
 }
