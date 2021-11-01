@@ -5,7 +5,6 @@ using namespace std;
 int main(){
 	char num[333335]={0x00,};
 	cin>>num;
-	
 	switch(num[0]){
             case '0':
 			    cout<<'0';
