@@ -20,6 +20,5 @@ int main(){
 		a_count=tmp;
 	}
 
-
 	cout<<a_count<<" "<<b_count<<endl;
 }
