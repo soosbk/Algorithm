@@ -8,7 +8,6 @@ struct cor{
 };
 
 int land[1000][1000];
-
 int main(){
 	int m,n,k;
 	cor dir[4]={{1,0},{-1,0},{0,1},{0,-1}};
