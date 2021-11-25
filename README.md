@@ -1,2 +1,1 @@
-# likelion_algorithm
-soobin's algorithm code 
+김수빈의 알고리즘 공부 자료입니다.
