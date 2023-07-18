@@ -28,3 +28,15 @@ for i in range(e): #간선 a,b
 
 
 	union_parent(parent,a,b)
+
+
+cycle=False
+for i in range(e): #간선 a,b
+	if find_parent(parent,a)==find_parent(parent,b):
+		cycle=True
+
+		break
+
+print(parent)
+
+if cycle: print("순환")
