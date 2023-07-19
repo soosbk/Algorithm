@@ -41,9 +41,4 @@ for edge in edges:
 		union(parent,a,b)
 		cost+=c
 		last=c #정렬했으니까 마지막이 가장 큰 길이의 간선
-print(parent)
-
 print(cost-last)
-
-
-
