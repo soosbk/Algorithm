@@ -6,6 +6,11 @@ for i in range(51):
 	parents.append(t)
 values=[[0]*51 for _ in range(51)]
 	
+def update_v(b,value):
+	for i in range(1,51):
+		for j in range(1,51):
+			if find([i,j],parents)==b:
+				values[i][j]=value
 
 def find(a,parents):
 	if parents[a[0]][a[1]]!=a:
@@ -16,17 +21,14 @@ def union(a,b):
 	global parents
 	global values
 
-	if values[a[0]][a[1]]!=0: values[b[0]][b[1]]=values[a[0]][a[1]]
-	else: values[a[0]][a[1]]=values[b[0]][b[1]]
-
 	a=find(a,parents)
 	b=find(b,parents)
-	new_p=parents[b[0]][b[1]]
-	for i in range(1,51):
-		for j in range(1,51):
-			if find([i,j],parents)==new_p:
-				parents[i][j]=parents[a[0]][a[1]]
-				values[i][j]=values[a[0]][a[1]]
+	parents[b[0]][b[1]]=parents[a[0]][a[1]]
+	
+	if values[a[0]][a[1]]!=0: values[b[0]][b[1]]=values[a[0]][a[1]]
+	else: values[a[0]][a[1]]=values[b[0]][b[1]]
+	update_v(a,values[a[0]][a[1]])
+	update_v(b,values[a[0]][a[1]])
 	
 
 def solution(commands):
@@ -40,13 +42,10 @@ def solution(commands):
 				new_p=find([int(lst[1]),int(lst[2])],parents)
 				for i in range(1,51):
 					for j in range(1,51):
-						if new_p==parents[int(lst[1])][int(lst[2])]: 
-							values[int(lst[1])][int(lst[2])]=lst[3]
+						if new_p==find([i,j],parents): 
+							values[i][j]=lst[3]
 				else:
-					for i in range(1,51):
-						for j in range(1,51):
-							if find([i,j],parents)==new_p:
-								values[i][j]=lst[3]
+					update_v(new_p,lst[3])
 							
 			else: #모든 셀
 				for i in range(1,51):
@@ -56,7 +55,7 @@ def solution(commands):
 
 
 		elif lst[0]=="MERGE":
-			if parents[int(lst[1])][int(lst[2])]==parents[int(lst[3])][int(lst[4])]: continue
+			if find([int(lst[1]),int(lst[2])],parents)==find([int(lst[3]),int(lst[4])],parents): continue
 			union([int(lst[1]),int(lst[2])],[int(lst[3]),int(lst[4])])
 			
 		elif lst[0]=="UNMERGE":
