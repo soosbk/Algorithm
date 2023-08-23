@@ -1,0 +1,28 @@
+def install(answer):
+	for x,y,a in answer:
+		if a==0: #보
+			if y==0 or [x-1,y,1] in answer or [x,y,1] in answer or [x,y-1,0] in answer:
+				continue
+			return False
+		else: #기둥
+			if [x,y-1,0] in answer or [x+1,y-1,0] in answer or ([x-1,y,1] in answer and [x+1,y,1] in answer):
+				continue
+			return False
+	return True
+
+def solution(n, build_frame):
+    answer = []
+    for frame in build_frame:
+   		x,y=frame[0],frame[1]
+   		a=frame[2]
+   		if frame[3]==1: #설치
+   			answer.append([x,y,a])
+   			if not install(answer):
+   				answer.remove([x,y,a])
+   		else: #삭제
+   			answer.remove([x,y,a])
+   			if not install(answer): answer.append([x,y,a])
+            
+    answer=sorted(answer)
+    return answer
+
