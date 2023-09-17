@@ -1,0 +1,21 @@
+def solution(cap, n, deliveries, pickups):
+    answer = 0
+    delivery=[]
+    pickup=[]
+    for i in range(n-1,-1,-1):
+        if deliveries[i]!=0:
+            delivery+=[i+1]*deliveries[i]
+        if pickups[i]!=0:
+            pickup+=[i+1]*pickups[i]
+
+    d=sum(deliveries)
+    p=sum(pickups)
+    now_p_idx,now_d_idx=0,0
+    while now_d_idx<d or now_p_idx<p:
+        if now_d_idx>=d: m=pickup[now_p_idx]
+        elif now_p_idx>=p: m=delivery[now_d_idx]
+        else: m=max(delivery[now_d_idx],pickup[now_p_idx])
+        answer+=m*2
+        now_d_idx+=cap
+        now_p_idx+=cap
+    return answer
